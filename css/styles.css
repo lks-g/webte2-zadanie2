@@ -1,0 +1,19 @@
+/************** TAGS **************/
+
+h1 {
+    text-align: center;
+    margin-top: 30px;
+}
+
+button {
+    display: block;
+    margin: 20px auto;
+}
+
+/************** ID **************/
+
+#menu {
+    margin: 30px;
+}
+
+/************** CLASS **************/
