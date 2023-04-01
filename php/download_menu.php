@@ -25,19 +25,19 @@ try {
         $menuData[] = array(
             'provider_id' => $provider_id,
             'menu_date' => date('Y-m-d'),
-            'download_time' => date('Y-m-d H:i:s'),
-            'source_code' => $output
+            'source_code' => $output,
+            'download_time' => date('Y-m-d H:i:s')
         );
     }
 
-    $sql = "INSERT INTO menus (provider_id, menu_date, download_time, source_code) VALUES (:provider_id, :menu_date, :download_time, :source_code)";
+    $sql = "INSERT INTO menus (provider_id, menu_date, source_code, download_time) VALUES (:provider_id, :menu_date, :source_code, :download_time)";
     $stmt = $db->prepare($sql);
 
     foreach ($menuData as $data) {
         $stmt->bindParam(':provider_id', $data['provider_id']);
         $stmt->bindParam(':menu_date', $data['menu_date']);
-        $stmt->bindParam(':download_time', $data['download_time']);
         $stmt->bindParam(':source_code', $data['source_code']);
+        $stmt->bindParam(':download_time', $data['download_time']);
         $stmt->execute();
 
         $menu_id = $db->lastInsertId();
