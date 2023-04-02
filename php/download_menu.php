@@ -3,9 +3,9 @@
 require_once('../config.php');
 
 try {
-    $db = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password);
+    $db = new PDO("mysql:host=$hostname;dbname=$dbname;charset=utf8mb4", $username, $password);
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $sql = "SELECT provider_id, url FROM providers WHERE name = 'FreeFood' OR name = 'VENZA' OR name = 'Eat&Meet'";
+    $sql = "SELECT provider_id, url FROM providers WHERE name = 'FreeFood' OR name = 'Venza' OR name = 'Eat&Meet'";
     $stmt = $db->prepare($sql);
     $stmt->execute();
     $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -26,18 +26,18 @@ try {
             'provider_id' => $provider_id,
             'menu_date' => date('Y-m-d'),
             'source_code' => $output,
-            'download_time' => date('Y-m-d H:i:s')
+            'download_date' => date('Y-m-d H:i:s')
         );
     }
 
-    $sql = "INSERT INTO menus (provider_id, menu_date, source_code, download_time) VALUES (:provider_id, :menu_date, :source_code, :download_time)";
+    $sql = "INSERT IGNORE INTO menus (provider_id, menu_date, source_code, download_date) VALUES (:provider_id, :menu_date, :source_code, :download_date)";
     $stmt = $db->prepare($sql);
 
     foreach ($menuData as $data) {
         $stmt->bindParam(':provider_id', $data['provider_id']);
         $stmt->bindParam(':menu_date', $data['menu_date']);
         $stmt->bindParam(':source_code', $data['source_code']);
-        $stmt->bindParam(':download_time', $data['download_time']);
+        $stmt->bindParam(':download_date', $data['download_date']);
         $stmt->execute();
 
         $menu_id = $db->lastInsertId();

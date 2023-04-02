@@ -18,20 +18,22 @@
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="php/api.php">API</a>
+                    <a class="nav-link" href="api.php">API</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="php/validate.php">Validate API</a>
+                    <a class="nav-link" href="#">Validate API</a>
                 </li>
             </ul>
         </div>
     </nav>
 
-    <div class="container-fluid mt-3">
-        <div class="row">
-            <div class="col-sm-12">
-                <h2>Menus</h2>
-                <div id="menus"></div>
+    <div class="row">
+        <div class="col-sm-12">
+            <h2>Validate API</h2>
+            <div id="validate">
+                <button id="download" type="button" class="btn btn-primary">Download</button>
+                <button id="parse" type="button" class="btn btn-success">Parse</button>
+                <button id="delete" type="button" class="btn btn-danger">Delete</button>
             </div>
         </div>
     </div>
@@ -39,7 +41,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    <script src="./scripts/script.js"></script>
+    <script src="../scripts/script.js"></script>
 </body>
 
 </html>
