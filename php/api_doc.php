@@ -18,10 +18,10 @@
         <div class="collapse navbar-collapse" id="collapsibleNavbar">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="api_doc.php">API</a>
+                    <a class="nav-link" href="#">API</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Validate API</a>
+                    <a class="nav-link" href="validate.php">Validate API</a>
                 </li>
             </ul>
         </div>
@@ -30,12 +30,8 @@
     <div class="container-fluid mt-3">
         <div class="row">
             <div class="col-sm-12">
-                <h2>Validate API</h2>
-                <div id="validate">
-                    <button id="download" type="button" class="btn btn-primary">Download</button>
-                    <button id="parse" type="button" class="btn btn-success">Parse</button>
-                    <button id="delete" type="button" class="btn btn-danger">Delete</button>
-                </div>
+                <h2>API</h2>
+                <div id="api"></div>
             </div>
         </div>
     </div>
