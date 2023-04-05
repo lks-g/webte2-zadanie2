@@ -3,6 +3,9 @@ $(document).ready(function () {
         $.ajax({
             url: "../rest-be/download_menu.php",
             method: "POST",
+            success: function (response) {
+                alert('Data downloaded successfully!');
+            },
             error: function (xhr, status, error) {
                 console.log(error);
             }
@@ -27,7 +30,7 @@ $(document).ready(function () {
             type: 'POST',
             url: '../rest-be/delete_tables.php',
             success: function (response) {
-                alert('Tables deleted successfully');
+                alert('Tables deleted successfully!');
             },
             error: function () {
                 alert('Error deleting tables');
