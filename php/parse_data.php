@@ -16,6 +16,7 @@ function parse_freefood_menu($menu_source_code) {
         if (!$date) {
             continue;
         }
+        $location = 'Fakulta informatiky a informačných technológií STU, Ilkovičova 2, 841 04 Karlova Ves';
         $offer_items = $menu_item->getElementsByTagName("li");
         foreach ($offer_items as $offer_item) {
             $name = $offer_item->getElementsByTagName("span")->item(1)->nodeValue;
@@ -25,7 +26,7 @@ function parse_freefood_menu($menu_source_code) {
                 'menu_type' => $menu_type,
                 'name' => $name,
                 'price' => $price,
-                'location' => 'FreeFood',
+                'location' => $location,
                 'image_url' => null
             );
         }
@@ -101,32 +102,30 @@ function parse_eatmeet_menu($menu_source_code) {
 try {
     $db = new PDO("mysql:host=$hostname;dbname=$dbname;charset=utf8mb4", $username, $password);
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
     $sql = "SELECT * FROM menus WHERE source_code IS NOT NULL ORDER BY download_time DESC";
     $stmt = $db->prepare($sql);
     $stmt->execute();
 
     $menus = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    foreach ($menus as $menu) {
+        switch ($menu['name']) {
+            case "FreeFood":
+                $freefood_dishes = parse_freefood_menu($menu['source_code']);
+                $dishes = array_merge($dishes, $freefood_dishes);
+                break;
+            case "Eat&Meet":
+                $eatmeet_dishes = parse_eatmeet_menu($menu['source_code']);
+                $dishes = array_merge($dishes, $eatmeet_dishes);
+                break;
+            case "Venza":
+                $venza_dishes = parse_venza_menu($menu['source_code']);
+                $dishes = array_merge($dishes, $venza_dishes);
+                break;
+            default:
+                echo "Error: Provider does not exist.";
+                break;
+        }
+    }
 } catch (PDOException $e) {
     echo $e->getMessage();
-}
-
-foreach ($menus as $menu) {
-    switch ($menu['name']) {
-        case "FreeFood":
-            $freefood_dishes = parse_freefood_menu($menu['source_code']);
-            $dishes = array_merge($dishes, $freefood_dishes);
-            break;
-        case "Eat&Meet":
-            $eatmeet_dishes = parse_eatmeet_menu($menu['source_code']);
-            $dishes = array_merge($dishes, $eatmeet_dishes);
-            break;
-        case "Venza":
-            $venza_dishes = parse_venza_menu($menu['source_code']);
-            $dishes = array_merge($dishes, $venza_dishes);
-            break;
-        default:
-            echo "Error: Provider does not exist.";
-            break;
-    }
 }
