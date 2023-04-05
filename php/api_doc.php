@@ -23,6 +23,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="validate.php">Validate API</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="../html/index.html">Test API</a>
+                </li>
             </ul>
         </div>
     </nav>
