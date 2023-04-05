@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <title>Restaurants</title>
+    <title>Restaurants - API</title>
 </head>
 
 <body>
@@ -30,8 +30,24 @@
     <div class="container-fluid mt-3">
         <div class="row">
             <div class="col-sm-12">
-                <h2>API</h2>
-                <div id="api"></div>
+                <h2>Popis API</h2>
+                <p>
+                    Toto API poskytuje prístup k databáze, ktorá obsahuje informácie o ponuke jedálneho lístka 
+                    od poskytovateľov FreeFood, Venza, Eat&Meet. Jedná sa o RESTful API, ktoré 
+                    používa štandardné HTTP metódy (GET, POST, PUT, DELETE) na interakciu s dátami. 
+                    API vracia odpovede vo formáte JSON.
+                </p>
+                <h3>Endpointy</h3>
+                <p>
+                    K dispozícii sú nasledujúce endpointy:
+                </p>
+                <ul>
+                    <li><code>GET /api/menus</code>: Vráti zoznam všetkých reštaurácií v databáze.</li>
+                    <li><code>GET /api/menus/{menu_id}</code>: Vráti konkrétne menu podľa ID.</li>
+                    <li><code>POST /api/menus</code>: Vytvorí nové menu.</li>
+                    <li><code>PUT /api/menus/{menu_id}</code>: Aktualizuje menu podľa ID.</li>
+                    <li><code>DELETE /api/menus/{menu_id}</code>: Zmaže menu podľa ID.</li>
+                </ul>
             </div>
         </div>
     </div>
