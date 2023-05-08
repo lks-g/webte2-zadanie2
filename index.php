@@ -5,34 +5,45 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
     <title>Restaurants</title>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
-        <a class="navbar-brand" href="#">Restaurant Menus</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="collapsibleNavbar">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a class="nav-link" href="php/api_doc.php">API</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="php/validate.php">Validate API</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="html/index.html">Test API</a>
-                </li>
-            </ul>
-        </div>
+    <nav class="top-nav">
+        <ul>
+            <li><a href="#">Restaurants</a></li>
+            <li><a href="php/api_doc.php">API Doc</a></li>
+        </ul>
     </nav>
 
+    <div id="buttons">
+        <h2>Validate API</h2>
+        <div id="validate">
+            <button id="download" type="button"">Download</button>
+            <button id="parse" type="button">Parse</button>
+            <button id="delete" type="button">Delete</button>
+        </div>
+    </div>
+
+    <div id="menu">
+        <table id="menu-table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Day</th>
+                    <th>Menu</th>
+                </tr>
+            </thead>
+            <tbody id="menu-rows">
+
+            </tbody>
+        </table>
+    </div>
+
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="scripts/script.js"></script>
 </body>
 
 </html>

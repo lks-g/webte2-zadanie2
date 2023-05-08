@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Mono&display=swap');
+
 /************** TAGS **************/
 
 h1 {
@@ -16,19 +17,15 @@ button {
 }
 
 body {
-    font-family: NotoSansMono, sans-serif;
+    font-family: 'Noto Sans Mono', monospace, sans-serif;
 }
 
 /************** ID **************/
 
-#menu {
-    margin: 30px;
-}
-
 #docs {
     width: 60%;
     margin: 0 auto;
-    margin-top: 5%;
+    margin-top: 10%;
     background-color: rgba(0, 0, 0, 0.1);
     padding: 10px;
     border-radius: 15px;
@@ -36,7 +33,7 @@ body {
 }
 
 #buttons {
-    width: 60%;
+    width: 80%;
     text-align: center;
     justify-content: center;
     margin: 0 auto;
@@ -46,9 +43,105 @@ body {
     border-radius: 15px;
 }
 
+#menu {
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 2%;
+    background-color: rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    border-radius: 15px;
+    margin-bottom: 10%;
+}
+
 #testing {
-    width: 60%;
+    width: 80%;
     margin: 0 auto;
     text-align: left;
-    
+}
+
+#validate {
+    margin-top: 1%;
+}
+
+#download, #parse, #delete {
+    width: 150px;
+    height: 50px;
+    display: inline-block;
+    text-align: center;
+    border: 3px solid #33333365;
+    border-radius: 10px;
+    font-size: 18px;
+}
+
+#download {
+    background-color: lightblue;
+}
+
+#parse {
+    background-color: lightgreen;
+}
+
+#delete {
+    background-color: lightcoral;
+}
+
+#download:hover, #parse:hover, #delete:hover {
+    border: 3px solid #333333;
+}
+
+/************** CLASSES **************/
+
+.top-nav {
+    background-color: #333;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4.5rem;
+}
+
+.top-nav ul {
+    list-style: none;
+    margin: 0 auto;
+    width: 90%;
+    padding: 0;
+    display: flex;
+}
+
+.top-nav li {
+    margin-top: 5px;
+    margin-right: 1%;
+    padding: 5px;
+    text-align: center;
+    background-color: #282727;
+    border: 3px solid rgba(255, 255, 255, 0);
+    border-radius: 10px;
+}
+
+.top-nav li a {
+    display: block;
+    padding: 10px 15px;
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.top-nav li:hover {
+    background-color: #282727;
+    border: 3px solid white;
+}
+
+@media screen and (max-width: 768px) {
+    .top-nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .top-nav li {
+        margin: 10px 0;
+    }
+
+    #buttons {
+        margin-top: 10rem;
+    }
 }
