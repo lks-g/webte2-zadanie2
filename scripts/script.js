@@ -13,21 +13,25 @@ $(document).ready(function () {
     });
 
     $('#parse').click(function () {
-        getDishes();
+        if(getAllDishes()) {
+            alert('Data parsed successfully!');
+        } else {
+            alert('Error parsing data!');
+        }
     });
-    -
-        $('#delete').click(function () {
-            $.ajax({
-                type: 'POST',
-                url: './rest-be/delete_tables.php',
-                success: function (response) {
-                    alert('Tables deleted successfully!');
-                },
-                error: function () {
-                    alert('Error deleting tables');
-                }
-            });
+
+    $('#delete').click(function () {
+        $.ajax({
+            type: 'POST',
+            url: './rest-be/delete_tables.php',
+            success: function (response) {
+                alert('Tables deleted successfully!');
+            },
+            error: function () {
+                alert('Error deleting tables');
+            }
         });
+    });
 
     $('#btn-pon, #btn-uto, #btn-str, #btn-stv, #btn-pia, #btn-sob, #btn-ned').on('click', function () {
         var day = $(this).text();
@@ -41,6 +45,7 @@ $(document).ready(function () {
 
 function getDishes(day) {
     $.getJSON('./php/eatnmeet.php', function (data) {
+
         var tbody = $('#eat-rows');
         tbody.empty();
 
@@ -64,11 +69,17 @@ function getDishes(day) {
     });
 
     $.getJSON('./php/freefood.php', function (data) {
+
         var tbody = $('#free-rows');
         tbody.empty();
 
         var rows = '';
         for (var i = 0; i < data.length; i++) {
+
+            if (data[i].day === "SOBOTA" || data[i].day === "NEDEĽA") {
+                continue;
+            }
+
             var date = data[i].date;
             var d = data[i].day;
             var menu = data[i].menu;
@@ -96,12 +107,17 @@ function getDishes(day) {
 
         var rows = '';
         for (var i = 0; i < data.length; i++) {
+
+            if (data[i].day === "SOBOTA" || data[i].day === "NEDEĽA") {
+                continue;
+            }
+
             var date = data[i].date;
             var menu = data[i].menu;
             var d = data[i].day;
 
             if (d === day) {
-                if(menu[i] === "ŠTÁTNY SVIATOK") {
+                if (menu[i] === "ŠTÁTNY SVIATOK") {
                     rows = '<tr><td>' + date + '</td><td>' + menu[i] + '</td><td>---</td></tr>'
                     break;
                 }
@@ -126,26 +142,34 @@ function getAllDishes() {
 
         var rows = '';
         for (var i = 0; i < data.length; i++) {
+
+            var date = data[i].date;
             var menu = data[i].menu;
 
             for (var j = 0; j < menu.length; j++) {
                 var meal = menu[j];
                 var parts = meal.split(':');
                 var name = parts[0];
-                var prices = parts[1];
+                var price = parts[1];
 
-                rows += '<tr><td>' + name + '</td><td>' + prices + '</td></tr>';
+                rows += '<tr><td>' + date + '</td><td>' + name + '</td><td>' + price + '</td></tr>';
             }
         }
         tbody.html(rows);
     });
 
     $.getJSON('./php/freefood.php', function (data) {
+
         var tbody = $('#free-rows');
         tbody.empty();
 
         var rows = '';
         for (var i = 0; i < data.length; i++) {
+
+            if (data[i].day === "SOBOTA" || data[i].day === "NEDEĽA") {
+                continue;
+            }
+
             var date = data[i].date;
             var menu = data[i].menu;
 
@@ -165,16 +189,22 @@ function getAllDishes() {
     });
 
     $.getJSON('./php/delikanti.php', function (data) {
+
         var tbody = $('#deli-rows');
         tbody.empty();
 
         var rows = '';
         for (var i = 0; i < data.length; i++) {
+
+            if (data[i].day === "SOBOTA" || data[i].day === "NEDEĽA") {
+                continue;
+            }
+
             var date = data[i].date;
             var menu = data[i].menu;
-        
+
             for (var j = 0; j < menu.length; j++) {
-                if(menu[i] === "ŠTÁTNY SVIATOK") {
+                if (menu[i] === "ŠTÁTNY SVIATOK") {
                     rows = '<tr><td>' + date + '</td><td>' + menu[i] + '</td><td>---</td></tr>'
                     break;
                 }
@@ -188,4 +218,6 @@ function getAllDishes() {
         }
         tbody.html(rows);
     });
+
+    return true;
 }

@@ -1,22 +1,26 @@
 <?php
 
-$ch = curl_init();
+require_once('../config.php');
 
-curl_setopt($ch, CURLOPT_URL, "https://www.delikanti.sk/prevadzky/3-jedalen-prif-uk/");
+try {
+    $db = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password);
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    $provider_id = 2;
+    $stmt = $db->prepare("SELECT source_code FROM menus WHERE provider_id = :provider_id");
+    $stmt->bindParam(':provider_id', $provider_id, PDO::PARAM_INT);
+    $stmt->execute();
+    $menu = $stmt->fetchColumn();
 
-$output = curl_exec($ch);
-
-curl_close($ch);
+} catch (PDOException $e) {
+    echo "Error retrieving menu: " . $e->getMessage();
+}
 
 $dom = new DOMDocument();
-
-$dom->loadHTML($output, LIBXML_NOWARNING | LIBXML_NOERROR);
-
+@$dom->loadHTML($menu, LIBXML_NOWARNING | LIBXML_NOERROR);
 $dom->preserveWhiteSpace = false;
-$tables = $dom->getElementsByTagName('table');
 
+$tables = $dom->getElementsByTagName('table');
 $rows = $tables->item(0)->getElementsByTagName('tr');
 $index = 0;
 $dayCount = 0;
@@ -54,4 +58,18 @@ foreach ($rows as $row) {
     }
 }
 
-echo json_encode($dishes, JSON_UNESCAPED_UNICODE);
+$data = json_encode($dishes, JSON_UNESCAPED_UNICODE);
+
+$sql = "INSERT INTO dishes (menu_id, parsed_data, download_date) VALUES (:menu_id, :parsed_data, :download_date)
+ON DUPLICATE KEY UPDATE 
+  parsed_data = :parsed_data, 
+  download_date = :download_date
+";
+$stmt = $db->prepare($sql);
+$stmt->bindValue(':menu_id', 2, PDO::PARAM_INT);
+$stmt->bindValue(':parsed_data', $data);
+$stmt->bindValue(':download_date', date('Y-m-d H:i:s'));
+$stmt->execute();
+
+$db = null;
+echo $data;

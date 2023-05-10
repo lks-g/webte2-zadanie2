@@ -5,7 +5,7 @@ require_once('../config.php');
 try {
     $db = new PDO("mysql:host=$hostname;dbname=$dbname;charset=utf8mb4", $username, $password);
     $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $sql = "SELECT provider_id, url FROM providers WHERE name = 'FreeFood' OR name = 'Venza' OR name = 'Eat&Meet'";
+    $sql = "SELECT provider_id, url FROM providers WHERE name = 'FreeFood' OR name = 'Delikanti' OR name = 'Eat&Meet'";
     $stmt = $db->prepare($sql);
     $stmt->execute();
     $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
