@@ -46,7 +46,7 @@
             <strong>Popis:</strong> Tento API endpoint vracia informácie o menu, ktoré sú k dispozícii v databáze. Informácie je možné získať buď podľa ID menu alebo všetkých menu.
         </p>
         <h3>Parametre požiadavky:</h3>
-        <table>
+        <table id="params">
             <thead>
                 <tr>
                     <th>Parameter</th>

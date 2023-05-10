@@ -1,5 +1,15 @@
 <?php
 
+require_once('../config.php');
+
+try {
+    $db = new PDO("mysql:host=$hostname;dbname=$dbname", $username, $password);
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+} catch (PDOException $e) {
+    echo "Error truncating tables: " . $e->getMessage();
+}
+
 $ch = curl_init();
 
 curl_setopt($ch, CURLOPT_URL, "http://eatandmeet.sk/tyzdenne-menu");
@@ -34,10 +44,10 @@ foreach ($parseNodes as $index => $nodeId) {
     foreach ($node->childNodes as $menuItem)
     {
         if($menuItem && $menuItem->childNodes->item(1) && $menuItem->childNodes->item(1)->childNodes->item(3)){
-            $nazov = trim($menuItem->childNodes->item(1)->childNodes->item(3)->childNodes->item(1)->childNodes->item(1)->nodeValue);
-            $cena = trim($menuItem->childNodes->item(1)->childNodes->item(3)->childNodes->item(1)->childNodes->item(3)->nodeValue);
-            $popis = trim($menuItem->childNodes->item(1)->childNodes->item(3)->childNodes->item(3)->nodeValue);
-            array_push($dishes[$index]["menu"], "$nazov($popis): $cena");
+            $meal = trim($menuItem->childNodes->item(1)->childNodes->item(3)->childNodes->item(1)->childNodes->item(1)->nodeValue);
+            $price = trim($menuItem->childNodes->item(1)->childNodes->item(3)->childNodes->item(1)->childNodes->item(3)->nodeValue);
+            $description = trim($menuItem->childNodes->item(1)->childNodes->item(3)->childNodes->item(3)->nodeValue);
+            array_push($dishes[$index]["menu"], "$meal($description): $price");
         }
     }
 }

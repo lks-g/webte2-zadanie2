@@ -20,6 +20,11 @@ body {
     font-family: 'Noto Sans Mono', monospace, sans-serif;
 }
 
+thead {
+    background-color: #333;
+    color: white;
+}
+
 /************** ID **************/
 
 #docs {
@@ -32,7 +37,7 @@ body {
     margin-bottom: 10%;
 }
 
-#buttons {
+#buttons, #menu-buttons {
     width: 80%;
     text-align: center;
     justify-content: center;
@@ -43,13 +48,17 @@ body {
     border-radius: 15px;
 }
 
+#menu-buttons {
+    margin-top: 2%;
+}
+
 #menu {
     width: 80%;
     margin: 0 auto;
     margin-top: 2%;
-    background-color: rgba(0, 0, 0, 0.1);
-    padding: 10px;
+    background-color: #333;
     border-radius: 15px;
+    padding: 5px;
     margin-bottom: 10%;
 }
 
@@ -63,8 +72,11 @@ body {
     margin-top: 1%;
 }
 
-#download, #parse, #delete {
-    width: 150px;
+#download,
+#parse,
+#delete,
+.day-btn {
+    width: 120px;
     height: 50px;
     display: inline-block;
     text-align: center;
@@ -85,11 +97,36 @@ body {
     background-color: lightcoral;
 }
 
-#download:hover, #parse:hover, #delete:hover {
+#download:hover,
+#parse:hover,
+#delete:hover,
+.day-btn:hover  {
     border: 3px solid #333333;
 }
 
+#eat-table, #free-table, #deli-table {
+    border-spacing: 0.4rem;
+    text-align: left;
+    background-color: #333;
+    flex-direction: column;
+    margin: 0 auto;
+    
+}
+
+#eat-table td, #free-table td, #deli-table td {
+    background-color: rgb(232, 232, 232);   
+}
+
+#menu h1, #menu h1, #menu h1 {
+    color: white;  
+    text-shadow: 1px 1px 1px black;
+}
+
 /************** CLASSES **************/
+
+.day-btn {
+    background-color: lightgoldenrodyellow;
+}
 
 .top-nav {
     background-color: #333;
@@ -130,6 +167,7 @@ body {
     background-color: #282727;
     border: 3px solid white;
 }
+
 
 @media screen and (max-width: 768px) {
     .top-nav ul {

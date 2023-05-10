@@ -30,7 +30,8 @@ try {
         );
     }
 
-    $sql = "INSERT IGNORE INTO menus (provider_id, menu_date, source_code, download_date) VALUES (:provider_id, :menu_date, :source_code, :download_date)";
+    $sql = "INSERT INTO menus (provider_id, menu_date, source_code, download_date) VALUES (:provider_id, :menu_date, :source_code, :download_date) 
+    ON DUPLICATE KEY UPDATE source_code = VALUES(source_code), download_date = VALUES(download_date)";
     $stmt = $db->prepare($sql);
 
     foreach ($menuData as $data) {
@@ -45,5 +46,3 @@ try {
 } catch(PDOException $e) {
     echo $e->getMessage();
 }
-
-?>

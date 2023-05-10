@@ -26,18 +26,52 @@
         </div>
     </div>
 
+    <div id="menu-buttons">
+        <button class="day-btn" type="button" id="btn-pon">Pondelok</button>
+        <button class="day-btn" type="button" id="btn-uto">Utorok</button>
+        <button class="day-btn" type="button" id="btn-str">Streda</button>
+        <button class="day-btn" type="button" id="btn-stv">Štvrtok</button>
+        <button class="day-btn" type="button" id="btn-pia">Piatok</button>
+        <button class="day-btn" type="button" id="btn-sob">Sobota</button>
+        <button class="day-btn" type="button" id="btn-ned">Nedeľa</button>
+        <button class="day-btn" type="button" id="btn-all">Všetky</button>
+    </div>
+
     <div id="menu">
-        <table id="menu-table">
+        <table id="eat-table">
+            <h1>Eat&Meet</h1>
             <thead>
                 <tr>
                     <th>Date</th>
-                    <th>Day</th>
                     <th>Menu</th>
+                    <th>Price</th>
                 </tr>
             </thead>
-            <tbody id="menu-rows">
+            <tbody id="eat-rows"></tbody>
+        </table>
 
-            </tbody>
+        <table id="free-table">
+            <h1>FIIT Food</h1>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Menu</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody id="free-rows"></tbody>
+        </table>
+
+        <table id="deli-table">
+            <h1>Delikanti</h1>
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Menu</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody id="deli-rows"></tbody>
         </table>
     </div>
 
